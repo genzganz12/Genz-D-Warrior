@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talisay City OS - Citizen</title>
+<style>
+:root{--green:#0a2e1f;--light:#c8f5d0;--accent:#00ff88;--red:#ff2a2a}
+body{margin:0;background:var(--green);color:white;font-family:system-ui;padding:12px}
+.header{display:flex;justify-content:space-between;align-items:center;background:#123a28;padding:12px;border-radius:16px}
+.card{background:#164a33;border:1px solid var(--light);border-radius:16px;padding:12px;margin:12px 0}
+.qr{font-size:28px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.tile{background:#1e5c3d;padding:14px;border-radius:14px;text-align:center;border:1px solid #2a7a4f}
+.btn-red{background:var(--red);padding:16px;border-radius:24px;text-align:center;font-weight:900;margin-top:12px}
+.status{float:right;background:#555;padding:4px 10px;border-radius:12px;font-size:12px}
+.approved{background:#00c853}.rejected{background:#ff2a2a}.pending{background:#ffab00}
+</style>
+</head>
+<body>
+<div class="header">
+  <div>🏛️ <b>Talisay City OS</b><br><small>Resident ID: TLS-284719 | Verified</small></div>
+  <div>👤</div>
+</div>
+
+<div class="card">
+  <div class="qr">🔳 QR VERIFY</div>
+  <small>Tap to show citizen QR - F5 Engine</small>
+  <div id="qrbox" style="margin-top:8px;background:white;color:black;padding:8px;border-radius:8px;text-align:center">TLS-JUAN-QR-284719-PKI-SIGNED</div>
+</div>
+
+<div class="grid">
+  <div class="tile" onclick="alert('Health F3 - BP Records')">💚<br>Health</div>
+  <div class="tile" onclick="alert('DepEd F - 18,450 enrolled')">🎓<br>Education</div>
+  <div class="tile" onclick="alert('F2.5 City Permits - with requirements')">📄<br>Permits</div>
+  <div class="tile">💧<br>Utilities</div>
+  <div class="tile" onclick="requestBrgy()">🏠<br>Brgy Services</div>
+  <div class="tile" style="background:#8b0000" onclick="alert('F16 SOS 50kb PWA GPS+SMS')">🚨<br>Emergency</div>
+</div>
+
+<div class="card">
+  <b>MY CERTIFICATES</b> <span style="float:right">3 Available ></span>
+  <div id="certs" style="margin-top:10px">
+    <div>Brgy Residency <span class="status approved">APPROVED</span><br><small>QR: Valid - Claim with ID at Brgy Hall - 60sec</small></div><hr>
+    <div>City Clearance <span class="status pending">PENDING</span><br><small>Tracking: TC-CITY-12345 - Need Cedula</small></div><hr>
+    <div>City Business Permit <span class="status rejected">REJECTED</span><br><small>Reason: Blurry ID - Reapply in 72hrs - Override by Kapitan available</small></div>
+  </div>
+</div>
+
+<div class="card">
+  <b>AYUDA STATUS</b> <span class="status">WALA PA</span><br>
+  <small>No ayuda distribution yet. Check back soon. F15 Ilonggo messaging.</small>
+</div>
+
+<div class="btn-red" onclick="alert('F16 SOS Sent - 50kb GPS + SMS Fallback to CHO & Brgy - offline-ready')">📞 SOS • EMERGENCY</div>
+
+<script>
+// F2 Brgy Request - No Upload - 60sec logic
+function requestBrgy(){
+  let c = document.getElementById('certs');
+  c.innerHTML += `<hr><div>Brgy Clearance <span class="status pending">PENDING</span><br><small>F2 - No requirements - BHW F1 validated - 60sec</small></div>`;
+  alert('F2 Request Sent - No Upload Needed - BHW will validate via F1 2-sec search - Kapitan Approve -> READY');
+  // Simulate approve after 3 sec
+  setTimeout(()=>{ alert('SMS F9: Brgy Clearance APPROVED - READY FOR COLLECTION - QR Valid - Bring Valid ID'); }, 3000);
+}
+// Offline-first - Dexie mock
+localStorage.setItem('talisay_citizen','TLS-284719');
+console.log('TC-OS V4.1 Citizen PWA 50kb - FlexSearch 2-sec - Yjs 100% sync - PKI offline');
+</script>
+</body>
+</html>
